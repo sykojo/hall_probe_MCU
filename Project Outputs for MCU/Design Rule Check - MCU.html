@@ -1,0 +1,435 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/6/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:54:00 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc" class="file"><acronym title="C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc">C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">29</td></tr>
+</table>
+</td>
+</table><a name="IDOLBJR0G442MC2NJAEIYJGW2PDLZ0DD0KYGKEVO4X24O4TPR5D3H"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLEMRHA5V3RRR4Z5DA0YY1L2FLSM2PD0W1YNZVEWUSM0Z4TTRO">Clearance Constraint (Gap=7.874mil) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHX3ZNIMAVCZUBP25ND0CJ2KCKGV2R10GJ5PDN1MW1PEPUGYLMIVN">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2HH0A5X0M2VFHP1ZVZ4IUHX41HRP1ELKIICDMWFQH2ZZDYWH2UQO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMD2AZQGXLJ31ZDWH3D4DAH2HG4WEMQRUDHF44PS2VXNBSEI1BNL">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCMFKAMPJDBTCBIAATH00WMT0SM3ZLNQPFL01T5E3ANWT0FKIC3GD">Width Constraint (Min=7.874mil) (Max=71497.938mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDU51EFGJ1E1OIFXGB4RSVR2GEOMKFJSTCPXODZHMVBODCPRHSTNKB">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRGZTWKQ0OKQVZYT4REY24BRNDB1IX2AFEN0BG1HDK0Y1XUHJKC">Power Plane Connect Rule(Relief Connect )(Expansion=11.811mil) (Conductor Width=4mil) (Air Gap=4mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNWPBNQROGHDGHX4MA3UMXR000E1N5XQSTJOFP4EDSCGBUAMG1FOL">Minimum Annular Ring (Minimum=3mil) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCEO40ACDFIJJGYRGX30ZE1UR0CI0LJYC4OJASRGBGPJKZD0ANWDF">Hole Size Constraint (Min=7.874mil) (Max=248.031mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMRJKHZKZCERFJYQV1GZT2YMXEIJHW35XKQ3PGP4SVG4DIHFMDSH">Hole To Hole Clearance (Gap=9.842mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1QXE3L0JH0TCPKNWZV444IFGPLQVBFJMRQLNKMBVHXLJZZUQ3SIM">Minimum Solder Mask Sliver (Gap=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRFPO1N4YVCCZEVBK3XH2KJCXAGDV0CO1ZFVL4XIXAPU3XE04MCHN">Silk To Solder Mask (Clearance=4mil) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPCFDPT4DNAXNEG5IVU3NGHORYKW4UBD1KY4CWNMKKNXABWKO1HOG">Silk to Silk (Clearance=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBH3I2WVZWKZCJJRJPGSATKDT5PVNB0CDX5HAUWJN0YZUFFK03T0L">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMIVNMCW3CYA5GNFSIMZEDJIG0M2B3A3UDKBQVCMWWNDRID2GNUSL">Board Clearance Constraint (Gap=0mil) (All)</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRFDUYJIZP4IXKD4DMZYKJUJJQHLKH5VMFIMOHBLTOAFBNH5R0M1K">Height Constraint (Min=0mil) (Max=71497.938mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">29</td>
+</tr>
+</table><br><a name="IDLEMRHA5V3RRR4Z5DA0YY1L2FLSM2PD0W1YNZVEWUSM0Z4TTRO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=7.874mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.726mil|Location2.X=3144.85mil|Location1.Y=3112.927mil|Location2.Y=3122.051mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.726mil|Location2.X=3144.85mil|Location1.Y=3112.927mil|Location2.Y=3122.051mil|Absolute=True">Clearance Constraint: (7.48mil &lt; 7.874mil) Between Pad J1-1(160.367mil,53.71mil) on L1(Signal) And Pad J1-7(146.194mil,99.084mil) on L1(Signal) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.726mil|Location2.X=3144.85mil|Location1.Y=2985.368mil|Location2.Y=2994.492mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.726mil|Location2.X=3144.85mil|Location1.Y=2985.368mil|Location2.Y=2994.492mil|Absolute=True">Clearance Constraint: (7.48mil &lt; 7.874mil) Between Pad J1-5(160.367mil,-48.652mil) on L1(Signal) And Pad J1-6(146.194mil,-94.026mil) on L1(Signal) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.726mil|Location2.X=3144.85mil|Location1.Y=3112.748mil|Location2.Y=3121.872mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3135.726mil|Location2.X=3144.85mil|Location1.Y=3112.748mil|Location2.Y=3121.872mil|Absolute=True">Clearance Constraint: (7.838mil &lt; 7.874mil) Between Pad J1-7(146.194mil,99.084mil) on L1(Signal) And Track (160.367mil,53.71mil)(203.316mil,53.71mil) on L1(Signal) </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDNWPBNQROGHDGHX4MA3UMXR000E1N5XQSTJOFP4EDSCGBUAMG1FOL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Annular Ring (Minimum=3mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5938.398mil|Location2.X=5941.398mil|Location1.Y=2154.386mil|Location2.Y=2157.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5938.398mil|Location2.X=5941.398mil|Location1.Y=2154.386mil|Location2.Y=2157.386mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad Free-2(2987.142mil,-895.295mil) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5938.398mil|Location2.X=5941.398mil|Location1.Y=3968.62mil|Location2.Y=3971.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5938.398mil|Location2.X=5941.398mil|Location1.Y=3968.62mil|Location2.Y=3971.62mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad Free-3(2987.142mil,918.939mil) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3081.177mil|Location2.X=3084.177mil|Location1.Y=2154.386mil|Location2.Y=2157.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3081.177mil|Location2.X=3084.177mil|Location1.Y=2154.386mil|Location2.Y=2157.386mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad Free-5(129.921mil,-895.295mil) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3081.177mil|Location2.X=3084.177mil|Location1.Y=3968.62mil|Location2.Y=3971.62mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3081.177mil|Location2.X=3084.177mil|Location1.Y=3968.62mil|Location2.Y=3971.62mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad Free-q(129.921mil,918.939mil) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMIVNMCW3CYA5GNFSIMZEDJIG0M2B3A3UDKBQVCMWWNDRID2GNUSL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6686.602mil|Location2.X=6695.476mil|Location1.Y=3030.744mil|Location2.Y=3039.618mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6686.602mil|Location2.X=6695.476mil|Location1.Y=3030.744mil|Location2.Y=3039.618mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Text "50.00" (3768.274mil,-150.956mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4507.122mil|Location2.X=4515.996mil|Location1.Y=1674.602mil|Location2.Y=1683.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4507.122mil|Location2.X=4515.996mil|Location1.Y=1674.602mil|Location2.Y=1683.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Text "80.00" (1423.847mil,-1402.132mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3652.242mil|Location2.X=3661.116mil|Location1.Y=1680.602mil|Location2.Y=1689.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3652.242mil|Location2.X=3661.116mil|Location1.Y=1680.602mil|Location2.Y=1689.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (0mil,-1366.142mil)(1407.847mil,-1366.142mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.319mil|Location2.X=2987.193mil|Location1.Y=1690.602mil|Location2.Y=1699.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.319mil|Location2.X=2987.193mil|Location1.Y=1690.602mil|Location2.Y=1699.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (0mil,-1366.142mil)(60mil,-1346.142mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.319mil|Location2.X=2987.193mil|Location1.Y=1670.602mil|Location2.Y=1679.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.319mil|Location2.X=2987.193mil|Location1.Y=1670.602mil|Location2.Y=1679.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (0mil,-1366.142mil)(60mil,-1386.142mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2948.319mil|Location2.X=2957.193mil|Location1.Y=1908.149mil|Location2.Y=1917.023mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2948.319mil|Location2.X=2957.193mil|Location1.Y=1908.149mil|Location2.Y=1917.023mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (0mil,-1376.142mil)(0mil,-900.827mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5378.002mil|Location2.X=5386.876mil|Location1.Y=1680.602mil|Location2.Y=1689.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5378.002mil|Location2.X=5386.876mil|Location1.Y=1680.602mil|Location2.Y=1689.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (1709.76mil,-1366.142mil)(3149.606mil,-1366.142mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6112.77mil|Location2.X=6121.644mil|Location1.Y=2793.398mil|Location2.Y=2802.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6112.77mil|Location2.X=6121.644mil|Location1.Y=2793.398mil|Location2.Y=2802.271mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (2842.52mil,-253.346mil)(3177.165mil,-253.346mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6112.77mil|Location2.X=6121.644mil|Location1.Y=3303.24mil|Location2.Y=3312.114mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6112.77mil|Location2.X=6121.644mil|Location1.Y=3303.24mil|Location2.Y=3312.114mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (2842.52mil,256.496mil)(3177.165mil,256.496mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2919.316mil|Location2.X=2928.19mil|Location1.Y=3049.273mil|Location2.Y=3058.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2919.316mil|Location2.X=2928.19mil|Location1.Y=3049.273mil|Location2.Y=3058.147mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (-29.003mil,-145.109mil)(-29.003mil,150.167mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6379.773mil|Location2.X=6388.647mil|Location1.Y=4030.996mil|Location2.Y=4039.87mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6379.773mil|Location2.X=6388.647mil|Location1.Y=4030.996mil|Location2.Y=4039.87mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3066.181mil,984.252mil)(3742.284mil,984.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6370.257mil|Location2.X=6379.131mil|Location1.Y=2062.492mil|Location2.Y=2071.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6370.257mil|Location2.X=6379.131mil|Location1.Y=2062.492mil|Location2.Y=2071.366mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3066.181mil,-984.252mil)(3742.284mil,-984.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6067.925mil|Location2.X=6076.799mil|Location1.Y=1690.602mil|Location2.Y=1699.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6067.925mil|Location2.X=6076.799mil|Location1.Y=1690.602mil|Location2.Y=1699.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3089.606mil,-1346.142mil)(3149.606mil,-1366.142mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6067.925mil|Location2.X=6076.799mil|Location1.Y=1670.602mil|Location2.Y=1679.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6067.925mil|Location2.X=6076.799mil|Location1.Y=1670.602mil|Location2.Y=1679.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3089.606mil,-1386.142mil)(3149.606mil,-1366.142mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6097.925mil|Location2.X=6106.799mil|Location1.Y=1908.149mil|Location2.Y=1917.023mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6097.925mil|Location2.X=6106.799mil|Location1.Y=1908.149mil|Location2.Y=1917.023mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3149.606mil,-1376.142mil)(3149.606mil,-900.827mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6125.484mil|Location2.X=6134.358mil|Location1.Y=3048.319mil|Location2.Y=3057.193mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6125.484mil|Location2.X=6134.358mil|Location1.Y=3048.319mil|Location2.Y=3057.193mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3177.165mil,-253.346mil)(3177.165mil,256.496mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6670.602mil|Location2.X=6679.476mil|Location1.Y=4000.996mil|Location2.Y=4009.87mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6670.602mil|Location2.X=6679.476mil|Location1.Y=4000.996mil|Location2.Y=4009.87mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3712.284mil,924.252mil)(3732.284mil,984.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6670.602mil|Location2.X=6679.476mil|Location1.Y=2092.492mil|Location2.Y=2101.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6670.602mil|Location2.X=6679.476mil|Location1.Y=2092.492mil|Location2.Y=2101.366mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3712.284mil,-924.252mil)(3732.284mil,-984.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6680.602mil|Location2.X=6689.476mil|Location1.Y=3606.348mil|Location2.Y=3615.222mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6680.602mil|Location2.X=6689.476mil|Location1.Y=3606.348mil|Location2.Y=3615.222mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3732.284mil,134.957mil)(3732.284mil,984.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6680.602mil|Location2.X=6689.476mil|Location1.Y=2471.14mil|Location2.Y=2480.014mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6680.602mil|Location2.X=6689.476mil|Location1.Y=2471.14mil|Location2.Y=2480.014mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3732.284mil,-984.252mil)(3732.284mil,-166.956mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6690.602mil|Location2.X=6699.476mil|Location1.Y=4000.996mil|Location2.Y=4009.87mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6690.602mil|Location2.X=6699.476mil|Location1.Y=4000.996mil|Location2.Y=4009.87mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3732.284mil,984.252mil)(3752.284mil,924.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6690.602mil|Location2.X=6699.476mil|Location1.Y=2092.492mil|Location2.Y=2101.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\sykojo\Documents\_electronics\hall_probe\MCU\MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6690.602mil|Location2.X=6699.476mil|Location1.Y=2092.492mil|Location2.Y=2101.366mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 11.811mil) Between Board Edge And Track (3732.284mil,-984.252mil)(3752.284mil,-924.252mil) on Bottom Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
